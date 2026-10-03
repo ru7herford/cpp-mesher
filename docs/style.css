@@ -1,0 +1,87 @@
+/* cpp-mesher slides. Sizes are slide pixels (slide 1600 x 900, inside the padding 1408 x 772). */
+
+h3 { margin: 0 0 6px; font-size: 24px; font-weight: 600; line-height: 1.25; }
+pre { margin: 12px 0 0; padding: 16px 20px; background: var(--sunk); border-radius: 6px; font-size: 19px; line-height: 1.5; }
+.quiet, figcaption, .label { color: var(--ink-3); }
+.label { margin: 0 0 6px; font-size: 18px; }
+.eq { margin: 4px 0 20px; font-size: 1.3em; }
+/* Slides without controls: content centred in the space under the title. */
+.center { display: flex; flex-direction: column; justify-content: center; }
+.center > * { flex: none; }
+.body.split { align-content: center; align-items: center; }
+/* What the picture shows right now, in a fixed height so nothing jumps while it changes. */
+.explain { height: 6em; margin: 0; overflow: hidden; font-size: 19px; line-height: 1.45; }
+.explain b { font-weight: 600; }
+
+/* 2 Why */
+.fig { margin: 0; }
+.fig canvas { display: block; width: 100%; height: 470px; background: var(--panel); border-radius: 6px; }
+.fig figcaption { margin-top: 12px; font-size: 20px; }
+
+/* 3 Where this fits: four pictures joined by arrows; the one this project makes is outlined in the accent. */
+.chain { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px; margin: 0; padding: 0; list-style: none; counter-reset: link; }
+.chain li { position: relative; counter-increment: link; }
+.chain li + li::before { content: "→"; position: absolute; left: -36px; top: 72px; color: var(--ink-3); font-size: 28px; }
+.chain img { display: block; width: 100%; height: auto; margin-bottom: 16px; border: 2px solid var(--rule); border-radius: 6px; }
+.chain .mine img { border-color: var(--accent); }
+.chain .tag { position: absolute; top: -30px; left: 0; color: var(--accent); font-size: 18px; font-weight: 600; }
+.chain h3::before { content: counter(link) ". "; color: var(--ink-3); }
+.chain p { margin: 0; font-size: 21px; color: var(--ink-2); }
+.wing { display: grid; grid-template-columns: 380px minmax(0, 1fr); gap: 44px; align-items: center; margin-top: 48px; }
+.wing img { display: block; width: 100%; height: auto; border: 2px solid var(--rule); border-radius: 6px; }
+.wing p { margin: 0; max-width: 800px; }
+
+/* 4 How it works: the slot on the left, the step's text on the right. */
+.how { display: flex; flex-direction: column; }
+.how-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: 600px minmax(0, 1fr); gap: 56px; padding: 28px 36px; }
+.how-fig { display: flex; flex-direction: column; gap: 12px; }
+#how-mesh { display: block; width: 100%; height: 400px; }
+.how .explain { height: 4.4em; }
+.pane p { font-size: 23px; }
+
+/* 5 Watch it work */
+.replay { display: grid; grid-template-columns: 250px minmax(0, 1fr) 370px; gap: 32px; outline: none; }
+.stages { display: grid; align-content: start; gap: 6px; margin: 52px 0 0; padding: 0; list-style: none; }
+.stages .group { margin: 8px 0 0; color: var(--ink-3); font-size: 18px; }
+.stages .sub { padding-left: 14px; }
+.stages button { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; padding: 0 12px;
+  border: 1px solid var(--rule); border-radius: 6px; background: var(--panel); color: var(--ink-2); font: 400 18px var(--font); text-align: left; cursor: pointer; }
+.stages button:hover { border-color: var(--ink); color: var(--ink); }
+.stages button[aria-current="step"] { border-color: var(--accent); background: var(--accent-tint); color: var(--ink); font-weight: 600; }
+.stages .meta { color: var(--ink-3); font-weight: 400; font-variant-numeric: tabular-nums; }
+.main-col { display: flex; flex-direction: column; min-width: 0; }
+.choice span { padding: 0 14px; font-size: 20px; }
+.mesh-box { position: relative; flex: 1; min-height: 0; margin-bottom: 18px; }
+#watch-mesh { display: block; width: 100%; height: 100%; }
+#watch-mesh.probing { cursor: crosshair; }
+/* Zoom: a round button with its next action drawn as lines (+ or −), centred. */
+.zoom { position: absolute; top: 14px; right: 14px; display: grid; place-items: center; width: 48px; height: 48px; padding: 0;
+  border: 1px solid var(--rule-strong); border-radius: 50%; background: var(--panel); color: var(--ink); cursor: pointer; }
+.zoom:hover { border-color: var(--ink); }
+.zoom svg { display: block; width: 20px; height: 20px; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.probe { position: absolute; left: 14px; bottom: 12px; margin: 0; padding: 4px 10px; border-radius: 6px; background: var(--panel); font-size: 18px; }
+.probe.hint { color: var(--ink-3); }
+.probe b { font-weight: 600; }
+.controls { display: flex; align-items: center; gap: 12px; }
+.controls #play { min-width: 140px; }
+.scrub { flex: 1; }
+.scrub output { min-width: 4.5em; text-align: right; color: var(--ink-2); font-size: 20px; }
+.chart-col .explain { margin-bottom: 14px; }
+#quality { margin-bottom: 18px; cursor: ew-resize; touch-action: pan-y; }
+.note { margin: 10px 0 0; font-size: 18px; line-height: 1.4; }
+
+/* Charts drawn by app.js */
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; font-family: var(--font); }
+.chart text { fill: var(--ink-3); font-size: 17px; font-variant-numeric: tabular-nums lining-nums; }
+.chart text.value { fill: var(--ink); font-weight: 600; }
+.chart .axis { stroke: var(--rule-strong); }
+.chart .series { fill: none; stroke: var(--model); stroke-width: 2.5; stroke-linejoin: round; }
+.chart .cursor { stroke: var(--ink); stroke-width: 1.5; }
+.chart .handle { fill: var(--ink); }
+
+/* 6 Limits and checks, 7 Sources and build */
+.center-grid { align-content: center; }
+.plain { margin: 0; padding-left: 1.1em; }
+.plain li { margin: 0 0 22px; padding-left: 6px; }
+.cols .sources { columns: 1; font-size: 20px; }
+.cols .sources li { margin-bottom: 10px; }

@@ -1,0 +1,14 @@
+{
+  "targets": {"min_angle_deg": 30, "max_edge": null, "met": true},
+  "points": 18,
+  "triangles": 18,
+  "boundary_segments": 16,
+  "min_angle_deg": 30.508779757872219,
+  "max_angle_deg": 105.77265868455416,
+  "max_radius_edge_ratio": 0.9848910050794385,
+  "max_edge": 2.7586228448267445,
+  "area": {"min": 0.30116279069767443, "max": 2.2799999999999998, "total": 15.460000000000001, "domain": 15.460000000000001},
+  "angle_histogram": {"bin_width_deg": 10, "counts": [0, 0, 0, 4, 21, 6, 5, 7, 4, 5, 2, 0, 0, 0, 0, 0, 0, 0]},
+  "refinement": {"inserted": 2, "splits": 8, "refused_splits": 0, "rejected_points": 0, "hit_point_limit": false, "triangles_below_min_angle": 0, "of_which_at_sharp_input_corners": 0, "triangles_over_max_edge": 0},
+  "time_ms": {"triangulate": 0.12570899999999999, "refine": 0.095449999999999993}
+}

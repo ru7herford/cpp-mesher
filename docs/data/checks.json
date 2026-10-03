@@ -1,0 +1,118 @@
+{
+ "examples": {
+  "test": "examples",
+  "examples": 5,
+  "triangles": 2182,
+  "interior_edges": 3101,
+  "not_delaunay": 0,
+  "recovered_segments": 1,
+  "bad_inputs_refused": 10,
+  "failures": 0
+ },
+ "predicates": {
+  "test": "predicates",
+  "orient_grid": 65536,
+  "orient_grid_naive_wrong": 11972,
+  "orient_random": 20000,
+  "orient_random_naive_wrong": 2731,
+  "incircle_random": 20000,
+  "incircle_random_naive_wrong": 2391,
+  "exact_ties": 150,
+  "segment_cases": 2007,
+  "cases": 105686,
+  "mismatches": 0,
+  "failures": 0
+ },
+ "fuzz": {
+  "test": "fuzz",
+  "polygons": 300,
+  "wedges": 12,
+  "meshes": 312,
+  "with_holes": 150,
+  "with_size_limit": 156,
+  "with_small_angles": 25,
+  "points": 59515,
+  "triangles": 66999,
+  "largest_mesh_points": 16911,
+  "interior_edges": 74645,
+  "not_delaunay": 0,
+  "worst_ratio": 0.751835,
+  "worst_case": "polygon 49: smallest angle 18.80 deg, target 25 deg, sharpest corner 28.36 deg",
+  "wedges_tip_maxedge_points_minangle": [
+   [
+    0.5,
+    0,
+    16318,
+    0.5
+   ],
+   [
+    0.5,
+    0.3,
+    16911,
+    0.5
+   ],
+   [
+    1,
+    0,
+    4116,
+    1.0
+   ],
+   [
+    1,
+    0.3,
+    4333,
+    0.9997
+   ],
+   [
+    2,
+    0,
+    1061,
+    2.0
+   ],
+   [
+    2,
+    0.3,
+    1084,
+    1.9976
+   ],
+   [
+    5,
+    0,
+    249,
+    5.0
+   ],
+   [
+    5,
+    0.3,
+    288,
+    4.9623
+   ],
+   [
+    10,
+    0,
+    70,
+    10.0
+   ],
+   [
+    10,
+    0.3,
+    123,
+    9.7065
+   ],
+   [
+    15,
+    0,
+    44,
+    15.0
+   ],
+   [
+    15,
+    0.3,
+    107,
+    15.0
+   ]
+  ],
+  "seconds": 4.17,
+  "failures": 0
+ }
+}

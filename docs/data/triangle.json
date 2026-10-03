@@ -1,0 +1,126 @@
+{
+ "triangle_version": "1.6",
+ "note": "Same boundary points for both; Triangle -p -q<target>, plus -a<sqrt(3)/4 h^2> when max_edge = h.",
+ "examples": [
+  {
+   "example": "airfoil",
+   "target_deg": 30,
+   "max_edge": null,
+   "boundary_points": 52,
+   "triangle_switches": "-pq30Q",
+   "mine": {
+    "points": 512,
+    "triangles": 935,
+    "min_angle_deg": 30.0035,
+    "max_angle_deg": 119.2387,
+    "below_target": 0,
+    "longest_edge": 0.761728
+   },
+   "triangle": {
+    "points": 310,
+    "triangles": 549,
+    "min_angle_deg": 30.1196,
+    "max_angle_deg": 118.995,
+    "below_target": 0,
+    "longest_edge": 1.2
+   },
+   "triangle_ratio": 1.703
+  },
+  {
+   "example": "slot",
+   "target_deg": 30,
+   "max_edge": null,
+   "boundary_points": 8,
+   "triangle_switches": "-pq30Q",
+   "mine": {
+    "points": 18,
+    "triangles": 18,
+    "min_angle_deg": 30.5088,
+    "max_angle_deg": 105.7727,
+    "below_target": 0,
+    "longest_edge": 2.758623
+   },
+   "triangle": {
+    "points": 16,
+    "triangles": 16,
+    "min_angle_deg": 31.5024,
+    "max_angle_deg": 105.7727,
+    "below_target": 0,
+    "longest_edge": 2.758623
+   },
+   "triangle_ratio": 1.125
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 30,
+   "max_edge": 0.3,
+   "boundary_points": 44,
+   "triangle_switches": "-pq30a0.03897114317Q",
+   "mine": {
+    "points": 174,
+    "triangles": 264,
+    "min_angle_deg": 10.0,
+    "max_angle_deg": 113.5264,
+    "below_target": 2,
+    "longest_edge": 0.297906
+   },
+   "triangle": {
+    "points": 122,
+    "triangles": 182,
+    "min_angle_deg": 10.0,
+    "max_angle_deg": 110.6368,
+    "below_target": 2,
+    "longest_edge": 0.364667
+   },
+   "triangle_ratio": 1.451
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 30,
+   "max_edge": 0.5,
+   "boundary_points": 40,
+   "triangle_switches": "-pq30a0.1082531755Q",
+   "mine": {
+    "points": 191,
+    "triangles": 321,
+    "min_angle_deg": 30.122,
+    "max_angle_deg": 115.7875,
+    "below_target": 0,
+    "longest_edge": 0.5
+   },
+   "triangle": {
+    "points": 130,
+    "triangles": 220,
+    "min_angle_deg": 30.2898,
+    "max_angle_deg": 117.6587,
+    "below_target": 0,
+    "longest_edge": 0.624363
+   },
+   "triangle_ratio": 1.459
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 30,
+   "max_edge": 0.3,
+   "boundary_points": 67,
+   "triangle_switches": "-pq30a0.03897114317Q",
+   "mine": {
+    "points": 370,
+    "triangles": 644,
+    "min_angle_deg": 30.2245,
+    "max_angle_deg": 118.7265,
+    "below_target": 0,
+    "longest_edge": 0.299768
+   },
+   "triangle": {
+    "points": 266,
+    "triangles": 465,
+    "min_angle_deg": 30.2538,
+    "max_angle_deg": 115.4162,
+    "below_target": 0,
+    "longest_edge": 0.37229
+   },
+   "triangle_ratio": 1.385
+  }
+ ]
+}

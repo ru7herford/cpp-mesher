@@ -1,0 +1,275 @@
+{
+ "max_points": 100000,
+ "runs": [
+  {
+   "example": "airfoil",
+   "target_deg": 31,
+   "met": true,
+   "points": 725,
+   "min_angle_deg": 31.021,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "airfoil",
+   "target_deg": 32,
+   "met": true,
+   "points": 1219,
+   "min_angle_deg": 32.003,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "airfoil",
+   "target_deg": 33,
+   "met": true,
+   "points": 4400,
+   "min_angle_deg": 33.014,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "airfoil",
+   "target_deg": 34,
+   "met": false,
+   "points": 100000,
+   "min_angle_deg": 15.975,
+   "hit_point_limit": true,
+   "below_target": 3299
+  },
+  {
+   "example": "airfoil",
+   "target_deg": 35,
+   "met": false,
+   "points": 100000,
+   "min_angle_deg": 15.207,
+   "hit_point_limit": true,
+   "below_target": 8109
+  },
+  {
+   "example": "airfoil",
+   "target_deg": 36,
+   "met": false,
+   "points": 100000,
+   "min_angle_deg": 14.763,
+   "hit_point_limit": true,
+   "below_target": 13570
+  },
+  {
+   "example": "slot",
+   "target_deg": 31,
+   "met": true,
+   "points": 31,
+   "min_angle_deg": 32.363,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slot",
+   "target_deg": 32,
+   "met": true,
+   "points": 45,
+   "min_angle_deg": 32.35,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slot",
+   "target_deg": 33,
+   "met": true,
+   "points": 46,
+   "min_angle_deg": 33.266,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slot",
+   "target_deg": 34,
+   "met": true,
+   "points": 54,
+   "min_angle_deg": 35.066,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slot",
+   "target_deg": 35,
+   "met": true,
+   "points": 51,
+   "min_angle_deg": 35.066,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slot",
+   "target_deg": 36,
+   "met": true,
+   "points": 89,
+   "min_angle_deg": 36.15,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 31,
+   "met": true,
+   "points": 175,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 32,
+   "met": true,
+   "points": 176,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 33,
+   "met": true,
+   "points": 178,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 34,
+   "met": true,
+   "points": 197,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 35,
+   "met": true,
+   "points": 205,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "sharp_corner",
+   "target_deg": 36,
+   "met": true,
+   "points": 258,
+   "min_angle_deg": 10.0,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 31,
+   "met": true,
+   "points": 193,
+   "min_angle_deg": 31.368,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 32,
+   "met": true,
+   "points": 195,
+   "min_angle_deg": 32.106,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 33,
+   "met": true,
+   "points": 201,
+   "min_angle_deg": 33.315,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 34,
+   "met": true,
+   "points": 209,
+   "min_angle_deg": 34.061,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 35,
+   "met": true,
+   "points": 219,
+   "min_angle_deg": 35.232,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "square_hole",
+   "target_deg": 36,
+   "met": false,
+   "points": 100000,
+   "min_angle_deg": 14.56,
+   "hit_point_limit": true,
+   "below_target": 14165
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 31,
+   "met": true,
+   "points": 386,
+   "min_angle_deg": 31.027,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 32,
+   "met": true,
+   "points": 412,
+   "min_angle_deg": 32.13,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 33,
+   "met": true,
+   "points": 424,
+   "min_angle_deg": 33.019,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 34,
+   "met": true,
+   "points": 437,
+   "min_angle_deg": 34.021,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 35,
+   "met": true,
+   "points": 450,
+   "min_angle_deg": 35.045,
+   "hit_point_limit": false,
+   "below_target": 0
+  },
+  {
+   "example": "slanted_hole",
+   "target_deg": 36,
+   "met": false,
+   "points": 100000,
+   "min_angle_deg": 14.022,
+   "hit_point_limit": true,
+   "below_target": 13754
+  }
+ ]
+}

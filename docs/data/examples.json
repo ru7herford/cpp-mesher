@@ -1,0 +1,91 @@
+{
+ "recorded": "2026-10-02",
+ "compiler": "GCC 13.3.0",
+ "cmake": "3.28.3",
+ "examples": [
+  {
+   "id": "airfoil",
+   "title": "Airfoil",
+   "short": "airfoil",
+   "focus": [
+    -0.15,
+    -0.35,
+    1.15,
+    0.35
+   ],
+   "focus_label": "Zoom on airfoil",
+   "note": "A NACA 0012 airfoil (48 points, cosine spacing) in a channel, with no size limit: the triangles grade themselves outwards from the airfoil.",
+   "time_ms": 6.73,
+   "timed_runs": 15,
+   "points": 512,
+   "triangles": 935,
+   "min_angle_deg": 30.00346180661461,
+   "max_angle_deg": 119.23865817735896,
+   "steps": 460,
+   "boundary_points": 52
+  },
+  {
+   "id": "slot",
+   "title": "Slot",
+   "short": "slot",
+   "note": "A narrow slot with a slanted end. It is the one example where every construction stage has work to do.",
+   "time_ms": 0.22,
+   "timed_runs": 15,
+   "points": 18,
+   "triangles": 18,
+   "min_angle_deg": 30.50877975787222,
+   "max_angle_deg": 105.77265868455416,
+   "steps": 10,
+   "boundary_points": 8
+  },
+  {
+   "id": "sharp_corner",
+   "title": "Sharp corner",
+   "short": "sharp corner",
+   "focus": [
+    -0.1,
+    -0.12,
+    1.5,
+    0.45
+   ],
+   "focus_label": "Zoom on corner",
+   "note": "A polygon with a 10° corner, sharper than the 30° target, and a size limit of 0.3.",
+   "time_ms": 2.1,
+   "timed_runs": 15,
+   "points": 174,
+   "triangles": 264,
+   "min_angle_deg": 9.99999679752466,
+   "max_angle_deg": 113.52637048033232,
+   "steps": 130,
+   "boundary_points": 44
+  },
+  {
+   "id": "square_hole",
+   "title": "Square with hole",
+   "short": "square",
+   "note": "A 4 × 4 square with a 1 × 1 hole and a size limit of 0.5.",
+   "time_ms": 2.65,
+   "timed_runs": 15,
+   "points": 191,
+   "triangles": 321,
+   "min_angle_deg": 30.121976923601796,
+   "max_angle_deg": 115.7874880897643,
+   "steps": 151,
+   "boundary_points": 40
+  },
+  {
+   "id": "slanted_hole",
+   "title": "Slanted hole",
+   "short": "slanted plate",
+   "note": "A slanted four-sided plate with a slanted four-sided hole and a size limit of 0.3: no side is parallel to an axis.",
+   "time_ms": 4.63,
+   "timed_runs": 15,
+   "points": 370,
+   "triangles": 644,
+   "min_angle_deg": 30.22452690733007,
+   "max_angle_deg": 118.72651140265583,
+   "steps": 303,
+   "boundary_points": 67
+  }
+ ]
+}

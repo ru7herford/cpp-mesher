@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cpp-mesher: how a mesher places its points</title>
+  <meta name="description" content="Varun Rao wrote a 2D triangle mesher in C++ to learn how meshing works. Replay every point it adds, and why.">
+  <meta name="theme-color" content="#F5F6F2">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400..650&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.css" integrity="sha384-3rdsX6e5mueWyoweR9NIVmtEsUkokpBT/0ALqKKIBMr9j4qhHkaIkAcGgsE6uVlp" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/katex.min.js" integrity="sha384-QFFtAGzvvj+bfgCGxXJlNZZR1nXEZgvG8tDLCCY1F19xl20WlfTYgguB4VcNdxYk" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.19.0/dist/contrib/auto-render.min.js" integrity="sha384-bjyGPfbij8/NDKJhSGZNP/khQVgtHUE5exjm4Ydllo42FwIgYsdLO2lXGmRBf5Mz" crossorigin="anonymous"
+    onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '\\(', right: '\\)', display: false}], throwOnError: false});"></script>
+  <link rel="stylesheet" href="deck.css?v=7">
+  <link rel="stylesheet" href="style.css?v=7">
+  <script defer src="deck.js?v=7"></script>
+  <script type="module" src="app.js?v=7"></script>
+</head>
+<body>
+<nav class="rail" aria-label="Pages">
+  <ol>
+    <li><a href="#start"><span class="n">1</span><span class="t">Start</span></a></li>
+    <li><a href="#why"><span class="n">2</span><span class="t">Why</span></a></li>
+    <li><a href="#fits"><span class="n">3</span><span class="t">Where this fits</span></a></li>
+    <li><a href="#how"><span class="n">4</span><span class="t">How it works</span></a></li>
+    <li><a href="#watch"><span class="n">5</span><span class="t">Watch it work</span></a></li>
+    <li><a href="#limits"><span class="n">6</span><span class="t">Limits and checks</span></a></li>
+    <li><a href="#sources"><span class="n">7</span><span class="t">Sources and build</span></a></li>
+  </ol>
+  <p class="me">
+    <a href="https://github.com/ru7herford" aria-label="GitHub: github.com/ru7herford"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>
+    <a href="https://www.linkedin.com/in/varun-rao/" aria-label="LinkedIn: linkedin.com/in/varun-rao"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.4 20.5h-3.5v-5.6c0-1.3 0-3-1.9-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6c.5-.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3zM5.3 7.4a2.1 2.1 0 1 1 0-4.1 2.1 2.1 0 0 1 0 4.1zm1.8 13.1H3.6V9h3.5v11.5zM22.2 0H1.8C.8 0 0 .8 0 1.7v20.6c0 .9.8 1.7 1.8 1.7h20.4c1 0 1.8-.8 1.8-1.7V1.7C24 .8 23.2 0 22.2 0z"/></svg></a>
+  </p>
+</nav>
+<p class="turn-hint" aria-hidden="true">Turn your phone sideways to see the pages larger.</p>
+
+<main>
+  <section class="frame" id="start" aria-labelledby="t-start">
+    <div class="fit"><div class="slide cover">
+      <div class="split">
+        <div>
+          <h1 id="t-start">cpp-mesher</h1>
+          <p class="point">A triangle mesher I wrote in C++ to learn how meshing works.</p>
+          <p class="byline">By Varun Rao</p>
+          <dl class="contact-list">
+            <dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/varun-rao/">linkedin.com/in/varun-rao</a></dd>
+            <dt>GitHub</dt><dd><a href="https://github.com/ru7herford">github.com/ru7herford</a></dd>
+            <dt>Code</dt><dd><a href="https://github.com/ru7herford/cpp-mesher">github.com/ru7herford/cpp-mesher</a></dd>
+          </dl>
+          <a class="btn btn-primary" href="#watch" id="start-watch"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3 1.5v11l9.5-5.5z"/></svg>Watch it mesh an airfoil</a>
+        </div>
+        <img src="img/airfoil.webp" width="900" height="560" alt="The finished mesh around an airfoil: small triangles near the airfoil, larger ones further away.">
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="why" aria-labelledby="t-why">
+    <div class="fit"><div class="slide">
+      <h2 id="t-why">I wanted to learn how meshing works, so I wrote a mesher.</h2>
+      <div class="body split">
+        <div>
+          <p>A mesh cuts a shape into small triangles. Simulation programs, like the ones that predict air flow, compute on those triangles.</p>
+          <p>A thin triangle, one with a tiny angle, can make their results inaccurate. So a mesher keeps every angle above a target. Here it is 30°.</p>
+          <p class="quiet">This page shows my mesher doing that, one point at a time.</p>
+        </div>
+        <figure class="fig">
+          <canvas id="first-mesh" role="img" aria-label="The airfoil's first mesh: long thin triangles stretch away from the airfoil. The thinnest one is outlined."></canvas>
+          <figcaption>The airfoil before any fixing: <span data-fact="airfoil.start_below">50</span> of <span data-fact="airfoil.start_triangles">52</span> triangles are thin (orange). The outlined one has an angle of only <span data-fact="airfoil.start_min">0.067</span>°.</figcaption>
+        </figure>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="fits" aria-labelledby="t-fits">
+    <div class="fit"><div class="slide">
+      <h2 id="t-fits">Meshing has four steps. This project does step 3.</h2>
+      <div class="body center">
+        <ol class="chain">
+          <li><img src="img/where-1-curve.webp" width="880" height="500" alt="The airfoil as a smooth curve.">
+            <h3>The shape</h3><p>A smooth curve, as drawn in a CAD program.</p></li>
+          <li><img src="img/where-2-points.webp" width="880" height="500" alt="The same airfoil as 48 points joined by straight lines.">
+            <h3>Points on its edges</h3><p>A mesh can only join points, so the curve is divided into 48 points.</p></li>
+          <li class="mine"><span class="tag">this project</span><img src="img/where-3-triangles.webp" width="880" height="500" alt="My triangle mesh around the airfoil.">
+            <h3>Triangles</h3><p>The area around it filled with triangles, none of them thin.</p></li>
+          <li><img src="img/where-4-layers.webp" width="880" height="500" alt="A mesh with thin stacked layers (grey) against the airfoil and triangles further out.">
+            <h3>Thin layers at the wall</h3><p>Flow solvers stack thin cells (grey) where the air changes fastest.</p></li>
+        </ol>
+        <div class="wing">
+          <img src="img/where-3d-wing.webp" width="762" height="343" alt="A straight wing covered in surface triangles.">
+          <p>In 3D the same steps go one level up: points on the edges, triangles on the surfaces (left), then the volume filled with tetrahedra (triangle pyramids) or hexahedra (bricks).</p>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="how" aria-labelledby="t-how">
+    <div class="fit"><div class="slide">
+      <h2 id="t-how">My mesher works in five steps. Step through each one.</h2>
+      <div class="body how" data-tabs>
+        <div class="tablist" role="tablist" aria-label="Steps">
+          <button class="tab" role="tab" type="button" id="how-1" aria-controls="pane-1" aria-selected="true">1. Points on the edges</button>
+          <button class="tab" role="tab" type="button" id="how-2" aria-controls="pane-2" aria-selected="false">2. Connect the points</button>
+          <button class="tab" role="tab" type="button" id="how-3" aria-controls="pane-3" aria-selected="false">3. Put the edges back</button>
+          <button class="tab" role="tab" type="button" id="how-4" aria-controls="pane-4" aria-selected="false">4. Remove the outside</button>
+          <button class="tab" role="tab" type="button" id="how-5" aria-controls="pane-5" aria-selected="false">5. Fix thin triangles</button>
+        </div>
+        <div class="panel how-grid">
+          <div class="how-fig">
+            <canvas id="how-mesh" role="img" aria-label="The slot shape at the chosen moment of the chosen step."></canvas>
+            <div class="stepper">
+              <button class="btn btn-icon" id="how-prev" type="button" aria-label="Back"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M10.5 1.5v11L2.5 7z"/></svg></button>
+              <output id="how-pos"></output>
+              <button class="btn btn-icon" id="how-next" type="button" aria-label="Forward"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.5v11L11.5 7z"/></svg></button>
+            </div>
+            <p class="explain" id="how-note" aria-live="polite"></p>
+          </div>
+          <div>
+            <div class="pane" role="tabpanel" id="pane-1" aria-labelledby="how-1">
+              <p>A mesh can only join points. So first the shape's edges are marked with points.</p>
+              <p>This shape, a slot, needs only its 8 corners. A curved edge, like the airfoil's, is divided into many points.</p>
+              <button class="next" type="button" data-next="how-2">Next: connect the points →</button>
+            </div>
+            <div class="pane" role="tabpanel" id="pane-2" aria-labelledby="how-2" hidden>
+              <p>Start with one big triangle around the whole shape. Add the points one at a time.</p>
+              <p>The rule: no point may be inside the circumcircle of any triangle (Delaunay, 1934). A new point removes every triangle whose circumcircle (dashed) contains it, then joins the gap.</p>
+              <p class="quiet">This yes-or-no test uses exact arithmetic, so rounding errors cannot make the mesh invalid.</p>
+              <button class="next" type="button" data-next="how-3">Next: put the edges back →</button>
+            </div>
+            <div class="pane" role="tabpanel" id="pane-3" aria-labelledby="how-3" hidden>
+              <p>The circumcircle rule does not depend on the shape. Here one of its edges (orange) is crossed by other triangles.</p>
+              <p>Flipping the crossing triangles puts the edge back (Sloan, 1993).</p>
+              <button class="next" type="button" data-next="how-4">Next: remove the outside →</button>
+            </div>
+            <div class="pane" role="tabpanel" id="pane-4" aria-labelledby="how-4" hidden>
+              <p>The big triangle from step 2 also filled the space outside the shape. Delete every triangle outside it (grey) or in a hole.</p>
+              <p>A couple of flips then tidy up. Orange triangles are thin.</p>
+              <button class="next" type="button" data-next="how-5">Next: fix thin triangles →</button>
+            </div>
+            <div class="pane" role="tabpanel" id="pane-5" aria-labelledby="how-5" hidden>
+              <p>A thin triangle has a large circumcircle for its shortest edge \(\ell\). With \(R\) the circumcircle's radius:</p>
+              <div class="eq">$$\frac{R}{\ell} = \frac{1}{2\sin\theta_{\min}}$$</div>
+              <p>That is 1 at 30°, and bigger means thinner. A new point goes at the circumcentre (×). If that point is too close to an edge of the shape (it encroaches on the edge), that edge is split in half instead (Ruppert, 1995).</p>
+              <button class="next" type="button" data-next="how-1">Back to step 1 ↺</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="watch" aria-labelledby="t-watch">
+    <div class="fit"><div class="slide">
+      <h2 id="t-watch">Watch the thin triangles disappear, one point at a time.</h2>
+      <div class="body replay" id="replay" tabindex="-1">
+        <ol class="stages" id="stages" aria-label="Steps of the run"></ol>
+        <div class="main-col">
+          <fieldset class="choice" id="shapes"><legend class="sr-only">Shape</legend></fieldset>
+          <div class="panel mesh-box">
+            <canvas id="watch-mesh" role="img" aria-label="The mesh at the current point in the run."></canvas>
+            <button class="zoom" id="zoom" type="button" hidden></button>
+            <p class="probe" id="probe" aria-live="polite" hidden></p>
+          </div>
+          <div class="controls">
+            <button class="btn btn-primary" id="play" type="button">Play</button>
+            <button class="btn btn-icon" id="prev" type="button" aria-label="Back one step"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M10.5 1.5v11L2.5 7z"/></svg></button>
+            <button class="btn btn-icon" id="next" type="button" aria-label="Forward one step"><svg viewBox="0 0 14 14" aria-hidden="true"><path d="M3.5 1.5v11L11.5 7z"/></svg></button>
+            <div class="slider scrub">
+              <input type="range" id="scrub" min="0" max="0" value="0" aria-label="Position in the run">
+              <output id="readout"></output>
+            </div>
+          </div>
+        </div>
+        <div class="chart-col">
+          <p class="explain" id="explain" aria-live="polite"></p>
+          <p class="label">Thin triangles left. Click or drag to jump.</p>
+          <div class="chart lines" id="quality" role="img" aria-label="Thin triangles left after every new point. Click or drag to jump."></div>
+          <dl class="results" id="results"></dl>
+          <p class="quiet note" id="results-note"></p>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="limits" aria-labelledby="t-limits">
+    <div class="fit"><div class="slide">
+      <h2 id="t-limits">It worked on every shape I tried. Here is how I checked, and where it stops.</h2>
+      <div class="body cols center-grid">
+        <div>
+          <h3>How I know it works</h3>
+          <ul class="plain">
+            <li><b><span data-fact="checks.cases">105,686</span></b> nearly impossible left-or-right questions, all answered right. Ordinary maths got <span data-fact="checks.naive_wrong">11,972</span> of the hardest <span data-fact="checks.grid">65,536</span> wrong.</li>
+            <li><b><span data-fact="checks.fuzz">312</span></b> random shapes, half with a hole. Every mesh came out valid.</li>
+            <li><b>Shewchuk's Triangle</b>, the standard mesher, reaches the same angles with fewer triangles. Mine has <span data-fact="triangle.range">1.1 to 1.7</span> times as many, because I kept the simplest rule.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>What it cannot do</h3>
+          <ul class="plain">
+            <li>Targets above <span data-fact="limits.best">33</span>° can run forever on some shapes. I stop at <span data-fact="limits.max_points">100,000</span> points.</li>
+            <li>Next to a corner sharper than 60°, a few thin triangles are left on purpose. Fixing them would never end.</li>
+            <li>Straight edges only. A curved edge must come in as points, and new points go on the straight segments, not on the original curve.</li>
+          </ul>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="frame" id="sources" aria-labelledby="t-sources">
+    <div class="fit"><div class="slide">
+      <h2 id="t-sources">The ideas come from these papers. The code is mine.</h2>
+      <div class="body cols">
+        <ol class="sources">
+          <li>Delaunay (1934): no point inside the circumcircle of any triangle. <a href="https://www.mathnet.ru/eng/im4937">paper</a></li>
+          <li>Bowyer; Watson (1981): adding points one at a time. <a href="https://doi.org/10.1093/comjnl/24.2.162">paper</a>, <a href="https://doi.org/10.1093/comjnl/24.2.167">paper</a></li>
+          <li>Sloan (1993): putting missing edges back by flips. <a href="https://doi.org/10.1016/0045-7949(93)90239-A">paper</a></li>
+          <li>Ruppert (1995): fixing thin triangles. <a href="https://doi.org/10.1006/jagm.1995.1021">paper</a></li>
+          <li>Shewchuk (1997): exact left-or-right tests. <a href="https://doi.org/10.1007/PL00009321">paper</a></li>
+          <li>Shewchuk (2002): sharp corners. <a href="https://doi.org/10.1016/S0925-7721(01)00047-5">paper</a></li>
+          <li>Kettner et al. (2008): the hard test cases. <a href="https://doi.org/10.1016/j.comgeo.2007.06.003">paper</a></li>
+          <li>Shewchuk: Triangle, the mesher I compare with. <a href="https://www.cs.cmu.edu/~quake/triangle.html">website</a></li>
+          <li>Geuzaine and Remacle (2009): gmsh, used only to draw the thin-layer picture on page 3. <a href="https://doi.org/10.1002/nme.2579">paper</a></li>
+        </ol>
+        <div>
+          <h3>Build it yourself</h3>
+          <p>You need GCC or Clang (C++20) and CMake. The comments in the code explain each step.</p>
+          <pre><code>cmake -S . -B build
+cmake --build build -j
+./build/mesher examples/airfoil.json mesh.vtk</code></pre>
+        </div>
+      </div>
+    </div></div>
+  </section>
+</main>
+</body>
+</html>
